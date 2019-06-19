@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": 0,
+      "text": "Deleniti omnis ut deleniti delectus voluptas quos ut saepe.",
+      "date": "Oct 15, 2018"
+    },
+    {
+      "id": 1,
+      "text": "Qui repellat ipsa et natus rerum.",
+      "date": "Aug 11, 2018"
+    },
+    {
+      "id": 2,
+      "text": "Ut hic saepe impedit sunt veritatis soluta ratione.",
+      "date": "Sep 4, 2018"
+    },
+    {
+      "id": 3,
+      "text": "Eos qui et unde tempore voluptatibus neque illo dolorum recusandae.",
+      "date": "Feb 18, 2019"
+    },
+    {
+      "id": 4,
+      "text": "Sint laudantium odio qui illum quo quidem ea.",
+      "date": "Oct 11, 2018"
+    },
+    {
+      "id": 5,
+      "text": "Fuga voluptatem exercitationem aspernatur ducimus.",
+      "date": "Oct 20, 2018"
+    },
+    {
+      "id": 6,
+      "text": "Nihil officiis quaerat sit ipsam iusto quaerat fugiat impedit sit.",
+      "date": "Apr 20, 2019"
+    },
+    {
+      "id": 7,
+      "text": "Facilis autem unde et dolor voluptatem fuga unde dolores.",
+      "date": "Oct 11, 2018"
+    },
+    {
+      "id": 8,
+      "text": "Deleniti aut et officiis.",
+      "date": "Mar 29, 2019"
+    },
+    {
+      "id": 9,
+      "text": "Dolores aspernatur perspiciatis molestias et iusto similique corporis.",
+      "date": "Mar 20, 2019"
+    }
+  ]
+}
