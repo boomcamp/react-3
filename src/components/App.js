@@ -34,7 +34,15 @@ class App extends Component {
       .then(response => this.setState({ posts: response.data}));
   }
 
-  deletePost() {}
+  deletePost(id) {
+    axios
+      .delete(`http://localhost:9090/posts/${id}`)
+      .then(response => {
+        this.setState({
+          posts: this.state.posts.filter(post => post.id !== id)
+        });
+      });
+  }
 
   createPost() {}
 
@@ -54,7 +62,8 @@ class App extends Component {
                 id={post.id} 
                 text={post.text} 
                 date={post.date} 
-                updatePostFn={this.updatePost} 
+                updatePostFn={this.updatePost}
+                deletePostFn={this.deletePost} 
               />
             )
           }
