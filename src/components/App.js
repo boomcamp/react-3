@@ -5,6 +5,7 @@ import './App.css';
 
 import Header from './Header/Header';
 import Compose from './Compose/Compose';
+import Post from './Post/Post';
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
@@ -44,7 +45,7 @@ class App extends Component {
           <Compose />
           {
             posts.map(post => {
-              <Post key={post.id}/>
+              <Post key={post.id} text={post.text} date={post.date}/>
             })
           }
         </section>
