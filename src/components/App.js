@@ -28,7 +28,11 @@ class App extends Component {
       .then(response => this.setState({ posts: response.data}));
   }
 
-  updatePost() {}
+  updatePost(id, text) {
+    axios
+      .put(`http://localhost:9090/posts/${id}`, { text })
+      .then(response => this.setState({ posts: response.data}));
+  }
 
   deletePost() {}
 
@@ -45,7 +49,13 @@ class App extends Component {
           <Compose />
           {
             posts.map(post => 
-              <Post key={post.id} text={post.text} date={post.date} />
+              <Post 
+                key={post.id} 
+                id={post.id} 
+                text={post.text} 
+                date={post.date} 
+                updatePostFn={this.updatePost} 
+              />
             )
           }
         </section>
