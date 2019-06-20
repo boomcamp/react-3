@@ -56,6 +56,7 @@ export default class Post extends Component {
     // const editing = this.state.editing
     // const showMasterMenu = this.state.showMasterMenu
     const { editing, showMasterMenu } = this.state;
+    const {text,date} =this.props;
 
     return (
       // Main body of post
@@ -65,13 +66,13 @@ export default class Post extends Component {
           <MdMoreVert onClick={this.toggleMasterMenu} />
 
           {/* Drop-down menu. Remember that the "showMasterMenu" variable has been destructured off of this.state */}
-          <div
-            className="Post__master-menu"
-            style={{ display: showMasterMenu ? 'flex' : 'none' }}
-          >
-            <span onClick={this.showEdit}>Edit</span>
-            <span>Delete</span>
-          </div>
+            <div
+              className="Post__master-menu"
+              style={{ display: showMasterMenu ? 'flex' : 'none' }}
+              >
+              <span onClick={this.showEdit}>Edit</span>
+              <span onClick={() => this.props.deletePostFn(this.props.id)}>Delete</span> {/* Remember to destructure deletePostFn off of props or use this.props.deletePostFn */}
+            </div>
         </div>
 
         {/* This is where all the meta data of the post will go (who, when, where) */}
@@ -80,10 +81,9 @@ export default class Post extends Component {
             <MdPersonOutline />
           </div>
 
-          <span className="Post__name">DevMountain</span>
-          <span className="Post__handle">@DevMountain</span>
-
-          <span className="Post__date">- POST DATE GOES HERE</span>
+          <span className="Post__name">Rex.rojo</span>
+          <span className="Post__handle">@boom.camp</span>
+          <span className="Post__date">- {date}</span>
         </div>
 
         {/* This is where the text goes. Notice the turnary statement. The turnary statement decides to display either the text OR the editor view
@@ -94,14 +94,18 @@ export default class Post extends Component {
                 <span ... ></span>
               }
         */}
-        <div className="Post__content">
-          {// This has been pulled off of this.state via destructuring
-          editing ? (
-            <Edit text="" hideEdit={this.hideEdit} />
-          ) : (
-            <span className="Post__text">POST TEXT GOES HERE</span>
-          )}
-        </div>
+       <div className="Post__content">
+         {editing ? (
+           <Edit
+              text={text}
+                id={this.props.id} // Remember to destructure id off of props or use this.props.id
+                hideEdit={this.hideEdit}
+                updatePostFn={this.props.updatePostFn}
+                />
+              ) : (
+              <span className="Post__text">{text}</span>
+              )}
+              </div>
 
         {/* These are all of the cute little icons in the bottom left corner */}
         <div className="Post__user-controls">
