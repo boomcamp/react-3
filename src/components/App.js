@@ -62,12 +62,22 @@ class App extends Component {
       })
   }
 
+  searchPost = (text) => {
+    axios
+      .get(`http://localhost:9090/posts?q=${encodeURI(text)}`)
+      .then(response => {
+        this.setState({
+          posts: response.data
+        });
+      });
+  }
+
   render() {
     const { posts } = this.state;
 
     return (
       <div className="App__parent">
-        <Header />
+        <Header searchPostFn={this.searchPost} />
 
         <section className="App__content">
           <Compose createPostFn={this.createPost} />
