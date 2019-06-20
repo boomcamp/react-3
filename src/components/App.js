@@ -28,10 +28,20 @@ class App extends Component {
       .then(response => this.setState({ posts: response.data}));
   }
 
-  updatePost(id, text) {
+  updatePost(id, text, date) {
     axios
-      .put(`http://localhost:9090/posts/${id}`, { text })
-      .then(response => this.setState({ posts: response.data}));
+      .put(`http://localhost:9090/posts/${id}`, { text, date })
+      .then(response => {
+        const updatedPost = response.data;
+        const updatedPosts = this.state.posts.map(post => {
+          if (post.id === updatedPost.id){
+            return { post, ...updatedPost };
+          }else{
+            return post;
+          }
+        });
+        this.setState({ posts: updatedPosts });
+      })
   }
 
   deletePost(id) {
