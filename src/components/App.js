@@ -75,7 +75,6 @@ class App extends Component {
       .get(`http://localhost:9090/posts?q=${encodeURI(str)}`)
       .then(response => this.setState({ posts: response.data }));
 
-      console.log(str);
     
 
   }
