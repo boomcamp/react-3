@@ -54,7 +54,13 @@ class App extends Component {
       });
   }
 
-  createPost() {}
+  createPost(text, date) {
+    axios
+      .post('http://localhost:9090/posts', { text, date})
+      .then(response => {
+        this.setState({ posts: [response.data, ...this.state.posts] })
+      })
+  }
 
   render() {
     const { posts } = this.state;
@@ -64,7 +70,7 @@ class App extends Component {
         <Header />
 
         <section className="App__content">
-          <Compose />
+          <Compose createPostFn={this.createPost} />
           {
             posts.map(post => 
               <Post 
