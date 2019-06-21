@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
 
-import './Search.css';
-
+import './Search.css'; 
 import { MdSearch } from 'react-icons/md';
 
 //////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *HEADER* COMPONENT
 
 export default class Search extends Component {
+
+  constructor(props){ 
+    super(props); 
+    this.state = {
+      search: "",
+      posts: [],
+      value: "",
+    }
+  };
+    
+    handleSearch(value) {
+      this.setState({Search: value})
+      if (this.props.onChange) {
+        this.props.onChange(value);
+      } 
+   
+    
+  }
   render() {
     return (
       <section className="Search__parent">
         <div className="Search__content">
-          <input placeholder="Search Your Feed" />
+          <input placeholder="Search Your Feed" 
+              value = { this.state.handleSearch } 
+              onChange={this.Search}
+          />
 
           <MdSearch id="Search__icon" />
         </div>
