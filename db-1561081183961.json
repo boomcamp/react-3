@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": 0,
+      "text": "Maiores saepe delectus.",
+      "date": "Jun 13, 2019"
+    },
+    {
+      "id": 1,
+      "text": "Libero incidunt quia illum quo numquam vel error ex iure.",
+      "date": "Aug 16, 2018"
+    },
+    {
+      "id": 2,
+      "text": "Maxime reiciendis explicabo eius sit sed in itaque aspernatur.",
+      "date": "Apr 20, 2019"
+    },
+    {
+      "id": 3,
+      "text": "Voluptates minima libero consectetur ut veniam et voluptas.",
+      "date": "May 29, 2019"
+    },
+    {
+      "id": 4,
+      "text": "Voluptatem nemo illo non beatae corporis est est dolorem.",
+      "date": "Jun 22, 2018"
+    },
+    {
+      "id": 5,
+      "text": "Voluptate sed rerum assumenda sit aut rem.",
+      "date": "Feb 28, 2019"
+    },
+    {
+      "id": 6,
+      "text": "Soluta culpa sunt molestias rerum voluptates quo quisquam distinctio.",
+      "date": "Apr 3, 2019"
+    },
+    {
+      "id": 7,
+      "text": "Et molestiae autem.",
+      "date": "Apr 22, 2019"
+    },
+    {
+      "id": 8,
+      "text": "Enim ipsam dolor quas molestiae fuga repellat.",
+      "date": "May 3, 2019"
+    },
+    {
+      "id": 9,
+      "text": "Soluta asperiores sunt corporis rerum voluptas magni dicta.",
+      "date": "Mar 30, 2019"
+    }
+  ]
+}
