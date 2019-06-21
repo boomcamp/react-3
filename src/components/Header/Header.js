@@ -8,6 +8,9 @@ import Search from './Search/Search';
 //////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *APP* COMPONENT
 
 export default class Header extends Component {
+  constructor() {
+    super();
+  }
   render() {
     return (
       <section className="Header__parent">
@@ -17,11 +20,9 @@ export default class Header extends Component {
             <MdFilterHdr id="Header__company-icon" />
             <span>Social Mountain</span>
           </div>
-
           {/* Displays the search bar */}
           <div className="Header__right">
-            <Search />
-
+            <Search searchPost={this.props.searchPost} />
             {/* Displays the profile icon */}
             <div className="Header__profile">
               <MdPersonOutline />
