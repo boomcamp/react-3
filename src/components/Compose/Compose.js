@@ -20,7 +20,19 @@ export default class Compose extends Component {
     this.setState({ text });
   }
 
-  createPost() {}
+  createPost() {
+    const date = new Date().toLocaleString('en-PH', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+
+    const { text } = this.state;
+    const { createPostFn } = this.props;
+
+    createPostFn( text, date );
+    this.setState({ text: '' });
+  }
 
   render() {
     // Destructuring
