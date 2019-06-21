@@ -20,6 +20,7 @@ class App extends Component {
     this.updatePost = this.updatePost.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.searchPost = this.searchPost.bind(this);
   }
 
   componentDidMount() {
@@ -73,11 +74,15 @@ class App extends Component {
   }
 
   searchPost(text) {
+    console.log(text);
+    let filtered;
     if(text != '') {
-      axios.get(`http://localhost:9090/posts/filter?text=${text}`)
+      axios.get(`http://localhost:9090/posts`)
       .then(res => {
-        this.setState({
-          posts: res.data
+        let regex = new RegExp(decodeURI(text),'gi');
+        filtered = res.data.filter(e => e.text.match(regex));
+        this.setState({ 
+          posts: filtered 
         });
       });
     }
@@ -87,8 +92,7 @@ class App extends Component {
     const { posts } = this.state;
     return (
       <div className="App__parent">
-        <Header />
-
+        <Header searchPost={this.searchPost} />
         <section className="App__content">
           <Compose createPostFn={this.createPost} />
 

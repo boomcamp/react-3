@@ -56,7 +56,6 @@ export default class Post extends Component {
     const { editing, showMasterMenu } = this.state;
     const { text, date } = this.props;
     //const { editing, showMasterMenu } = this.state;
-
     return (
       // Main body of post
       <section className="Post__parent" onClick={this.hideMasterMenu}>
