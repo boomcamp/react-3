@@ -45,7 +45,13 @@ class App extends Component {
     });
   }
 
-  deletePost() {}
+  deletePost(id) {
+    axios.delete(`http://localhost:9090/posts/${id}`).then(response => {
+      this.setState({
+        posts: this.state.posts.filter(post => post.id !== id),
+      });
+    });
+  }
 
   createPost() {}
 
@@ -60,7 +66,7 @@ class App extends Component {
           <Compose />
           {posts
             .map(post => 
-            <Post key={post.id} text={post.text} date={post.date} updatePostFn={this.updatePost} id={post.id}/>
+            <Post key={post.id} text={post.text} date={post.date} updatePostFn={this.updatePost} id={post.id} deletePostFn={this.deletePost}/>
             )}
         </section>
       </div>
