@@ -5,7 +5,7 @@ import './App.css';
 import axios from 'axios';
 import Header from './Header/Header';
 import Compose from './Compose/Compose';
-import Post from './Post/Post';
+import Post from './Post/Post'; 
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
