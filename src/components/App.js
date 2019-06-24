@@ -24,7 +24,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-    .get('https://practiceapi.devmountain.com/api/posts')
+    .get('http://localhost:9090/posts')
     .then(response => {
       this.setState({ posts: response.data });
     });
@@ -45,9 +45,10 @@ class App extends Component {
 
         <section className="App__content">
           <Compose />
-          {posts.map(post => (
-            <Post key={post.id} />
-          ))}
+          {posts
+            .map(post => 
+            <Post key={post.id} text={post.text} date={post.date} />
+            )}
         </section>
       </div>
     );
