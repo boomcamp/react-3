@@ -37,14 +37,11 @@ class App extends Component {
       
       const updatedPosts = this.state.posts.map(post => {
         if (post.id === updatedPost.id) {
-          console.log(updatedPosts);
           return { post, ...updatedPost };
         } else {
           return post;
         }
       }); 
-
-      console.log(updatedPosts);
       
       this.setState({ posts: updatedPosts });
     });
