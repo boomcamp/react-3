@@ -33,6 +33,7 @@ class App extends Component {
   updatePost(id, text) {
     axios.put(`http://localhost:9090/posts/${id}`, { text }).then(response => {
       const updatedPost = response.data;
+
       const updatedPosts = this.state.posts.map(post => {
         if (post.id === updatedPost.id) {
           return { post, ...updatedPost };
@@ -45,15 +46,24 @@ class App extends Component {
     });
   }
 
-  deletePost(id) {
-    axios.delete(`http://localhost:9090/posts/${id}`).then(response => {
-      this.setState({
-        posts: this.state.posts.filter(post => post.id !== id),
-      });
-    });
+  deletePost(id){
+    axios.delete(`http://localhost:9090/posts/${id}`)
+      .then(res => {
+        this.setState({
+          posts: this.state.posts.filter(p => p.id !== id)
+        })
+      })
   }
-
-  createPost() {}
+    
+  createPost( text ){
+    axios
+        .post('http://localhost:9090/posts', { text })
+        .then( results => {
+          this.setState({ 
+            posts: this.state.posts.concat(results.data) 
+          })
+      }) 
+    }
 
   render() {
     const { posts } = this.state;
@@ -63,7 +73,7 @@ class App extends Component {
         <Header />
 
         <section className="App__content">
-          <Compose />
+          <Compose createPostFn={this.createPost} />
           {posts
             .map(post => 
             <Post key={post.id} text={post.text} date={post.date} updatePostFn={this.updatePost} id={post.id} deletePostFn={this.deletePost}/>
