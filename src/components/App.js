@@ -47,8 +47,7 @@ class App extends Component {
   }
 
   deletePost(id){
-    axios.delete(`http://localhost:9090/posts/${id}`)
-      .then(res => {
+    axios.delete(`http://localhost:9090/posts/${id}`).then(res => {
         this.setState({
           posts: this.state.posts.filter(p => p.id !== id)
         })
