@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 
 import './App.css';
 
+import axios from 'axios';
 import Header from './Header/Header';
 import Compose from './Compose/Compose';
+import Post from './Post/Post';
+
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 class App extends Component {
   constructor() {
@@ -18,7 +22,13 @@ class App extends Component {
     this.createPost = this.createPost.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    axios
+    .get('https://practiceapi.devmountain.com/api/posts')
+    .then(response => {
+      this.setState({ posts: response.data });
+    });
+  }
 
   updatePost() {}
 
@@ -35,6 +45,9 @@ class App extends Component {
 
         <section className="App__content">
           <Compose />
+          {posts.map(post => (
+            <Post key={post.id} />
+          ))}
         </section>
       </div>
     );
