@@ -20,6 +20,16 @@ class App extends Component {
     this.updatePost = this.updatePost.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(value) {
+    axios
+    .get(`http://localhost:9090/posts/?q=${encodeURI(value)}`).then(response => {
+      this.setState({
+        posts: response.data
+      })
+    })
   }
 
   componentDidMount() {
@@ -65,7 +75,9 @@ class App extends Component {
     const { posts } = this.state;
     return (
       <div className="App__parent">
-        <Header />
+        <Header 
+          handleSearchFn = {this.handleSearch}
+        />
 
         <section className="App__content">
           <Compose 
