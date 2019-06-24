@@ -24,17 +24,31 @@ class App extends Component {
 
   componentDidMount() {
     axios
-    .get(`http://localhost:9090/posts`)
-    .then(response => 
-      this.setState(
-        {
-          posts: response.data
-        }
-      )
-    )
+    .get(`http://localhost:9090/posts`).then(response => {
+      this.setState({
+        posts: response.data
+      })
+    });
   }
 
-  updatePost() {}
+  updatePost(id, text) {
+    axios.put(`http://localhost:9090/posts/${id}`, { text }).then(response => {
+      const updatedPost = response.data;
+      
+      const updatedPosts = this.state.posts.map(post => {
+        if (post.id === updatedPost.id) {
+          console.log(updatedPosts);
+          return { post, ...updatedPost };
+        } else {
+          return post;
+        }
+      }); 
+
+      console.log(updatedPosts);
+      
+      this.setState({ posts: updatedPosts });
+    });
+  }
 
   deletePost() {}
 
@@ -42,7 +56,6 @@ class App extends Component {
 
   render() {
     const { posts } = this.state;
-
     return (
       <div className="App__parent">
         <Header />
@@ -53,8 +66,10 @@ class App extends Component {
             posts.map(post => (
               <Post 
                 key={post.id}
+                id={post.id}
                 text={post.text}
                 date={post.date}
+                updatePostFn={this.updatePost}
               />
             ))
           }
