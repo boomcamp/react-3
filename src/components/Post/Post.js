@@ -53,7 +53,7 @@ export default class Post extends Component {
 
   render() {
     const { editing, showMasterMenu } = this.state;
-    const { text, date } = this.props;
+    const { text, date, id, updatePostFn } = this.props;
 
     return (
       // Main body of post
@@ -93,9 +93,13 @@ export default class Post extends Component {
               }
         */}
         <div className="Post__content">
-          {// This has been pulled off of this.state via destructuring
-          editing ? (
-            <Edit text="" hideEdit={this.hideEdit} />
+          {editing ? (
+            <Edit
+              text={text}
+              id={id} // Remember to destructure id off of props or use this.props.id
+              hideEdit={this.hideEdit}
+              updatePostFn={updatePostFn}
+            />
           ) : (
             <span className="Post__text">{text}</span>
           )}

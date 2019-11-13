@@ -32,7 +32,7 @@ class App extends Component {
 
   updatePost(id, text) {
     axios
-      .put(`https://practiceapi.devmountain.com/api/posts/${id}`, { text })
+      .put(`https://practiceapi.devmountain.com/api/posts/?id=${id}`, { text })
       .then(response => {
         const updatedPost = response.data;
         const updatedPosts = this.state.posts.map(post => {
