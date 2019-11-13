@@ -20,6 +20,7 @@ class App extends Component {
 		this.updatePost = this.updatePost.bind(this);
 		this.deletePost = this.deletePost.bind(this);
 		this.createPost = this.createPost.bind(this);
+		this.filterPost = this.filterPost.bind(this);
 	}
 
 	componentDidMount() {
@@ -62,13 +63,12 @@ class App extends Component {
 			});
 		}
 	}
-
 	render() {
 		const { posts } = this.state;
 
 		return (
 			<div className="App__parent">
-				<Header filterPost={this.filterPost.bind(this)} />
+				<Header filterPost={this.filterPost} />
 
 				<section className="App__content">
 					<Compose createPostFn={this.createPost} />
