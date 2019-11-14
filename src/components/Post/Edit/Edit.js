@@ -19,7 +19,10 @@ export default class Edit extends Component {
     this.setState({ text: value });
   }
 
-  updatePost() {}
+  updatePost(id, text) {
+    this.props.updatePostFn(id, text)
+    this.props.hideEdit()
+  }
 
   render() {
     // More destructuring!
@@ -40,7 +43,7 @@ export default class Edit extends Component {
           <button
             id="Edit__controls-update"
             className="Edit__control-btn"
-            onClick={this.updatePost}
+            onClick={() => this.updatePost(this.props.id, text)}
           >
             Update
           </button>
