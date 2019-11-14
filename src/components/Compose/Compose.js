@@ -76,8 +76,8 @@ export default class Compose extends Component {
             placeholder="What's on your mind?"
             value={text}
             onChange={e => this.updateText(e.target.value)}
-            onFocus={() => this.showComposeBtn()}
-            onBlur={() => this.hideComposeBtn()}
+            onFocus={this.showComposeBtn}
+            onBlur={this.hideComposeBtn}
           />
         </div>
 

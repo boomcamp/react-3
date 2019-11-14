@@ -4,6 +4,7 @@ import {
   MdMoreVert,
   MdChatBubbleOutline,
   MdFavoriteBorder,
+  MdFavorite,
   MdMailOutline
 } from "react-icons/md";
 
@@ -19,15 +20,22 @@ export default class Post extends Component {
 
     this.state = {
       editing: false,
-      showMasterMenu: false
+      showMasterMenu: false,
+      favorite: false
     };
 
     this.hideEdit = this.hideEdit.bind(this);
     this.showEdit = this.showEdit.bind(this);
     this.toggleMasterMenu = this.toggleMasterMenu.bind(this);
     this.hideMasterMenu = this.hideMasterMenu.bind(this);
+    this.favoriteFn = this.favoriteFn.bind(this);
   }
 
+  favoriteFn(val) {
+    this.setState({
+      favorite: val
+    });
+  }
   // This puts the post into EDIT mode when the EDIT button is clicked from the drop-down
   showEdit() {
     this.setState({ editing: true, showMasterMenu: false });
@@ -112,7 +120,17 @@ export default class Post extends Component {
         {/* These are all of the cute little icons in the bottom left corner */}
         <div className="Post__user-controls">
           <MdChatBubbleOutline className="Post__control-icon" />
-          <MdFavoriteBorder className="Post__control-icon" />
+          {this.state.favorite ? (
+            <MdFavorite
+              className="Post__control-icon red"
+              onClick={() => this.favoriteFn(false)}
+            />
+          ) : (
+            <MdFavoriteBorder
+              className="Post__control-icon"
+              onClick={() => this.favoriteFn(true)}
+            />
+          )}
           <MdMailOutline className="Post__control-icon" />
         </div>
       </section>

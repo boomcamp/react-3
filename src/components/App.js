@@ -54,7 +54,7 @@ class App extends Component {
     axios
       .get(`http://localhost:9090/posts?q=${encodeURI(text)}`)
       .then(results => {
-        this.setState({ posts: results.data.reverse });
+        this.setState({ posts: results.data.reverse() });
       });
   }
 
