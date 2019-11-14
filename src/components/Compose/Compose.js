@@ -10,10 +10,25 @@ export default class Compose extends Component {
     super();
 
     this.state = {
-      text: ""
+      text: "",
+      composeBtn: false
     };
 
     this.createPost = this.createPost.bind(this);
+    this.showComposeBtn = this.showComposeBtn.bind(this);
+    this.hideComposeBtn = this.hideComposeBtn.bind(this);
+  }
+  showComposeBtn() {
+    this.setState({
+      composeBtn: true
+    });
+  }
+  hideComposeBtn() {
+    if (!this.state.text) {
+      this.setState({
+        composeBtn: false
+      });
+    }
   }
 
   updateText(text) {
@@ -41,7 +56,7 @@ export default class Compose extends Component {
     const new_date =
       month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
     createPostFn(text, new_date);
-    this.setState({ text: "" });
+    this.setState({ text: "", composeBtn: false });
   }
 
   render() {
@@ -61,12 +76,18 @@ export default class Compose extends Component {
             placeholder="What's on your mind?"
             value={text}
             onChange={e => this.updateText(e.target.value)}
+            onFocus={() => this.showComposeBtn()}
+            onBlur={() => this.hideComposeBtn()}
           />
         </div>
 
-        <div className="Compose__bottom">
-          <button onClick={this.createPost}>Compose</button>
-        </div>
+        {this.state.composeBtn ? (
+          <div className="Compose__bottom">
+            <button onClick={this.createPost}>Compose</button>
+          </div>
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
       </section>
     );
   }

@@ -25,7 +25,7 @@ class App extends Component {
 
   fetchData() {
     axios.get("http://localhost:9090/posts").then(results => {
-      this.setState({ posts: results.data, temp_post: results.data });
+      this.setState({ posts: results.data.reverse() });
     });
   }
 
@@ -54,13 +54,12 @@ class App extends Component {
     axios
       .get(`http://localhost:9090/posts?q=${encodeURI(text)}`)
       .then(results => {
-        this.setState({ posts: results.data });
+        this.setState({ posts: results.data.reverse });
       });
   }
 
   render() {
     const { posts } = this.state;
-    console.log(posts);
     return (
       <div className="App__parent">
         <Header searchPostFn={this.searchPost} />
