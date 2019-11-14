@@ -49,23 +49,27 @@ class App extends Component {
 	}
 
 	createPost(text) {
-		axios.post("https://practiceapi.devmountain.com/api/posts", { text }).then(results => {
+		var date = new Date();
+		axios.post("https://practiceapi.devmountain.com/api/posts", { text, date }).then(results => {
 			this.setState({ posts: results.data });
 		});
 	}
 
 	filterPost(text) {
-		if (text) {
-			axios.get(`https://practiceapi.devmountain.com/api/posts/filter?text=${text}`).then(response => {
+		axios.get("https://practiceapi.devmountain.com/api/posts").then(response => {
+			if (text) {
+				this.setState({
+					posts: response.data.filter(name => name.text.toLowerCase().includes(text.toLowerCase()))
+				});
+			} else {
 				this.setState({
 					posts: response.data
 				});
-			});
-		}
+			}
+		});
 	}
 	render() {
 		const { posts } = this.state;
-
 		return (
 			<div className="App__parent">
 				<Header filterPost={this.filterPost} />

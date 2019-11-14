@@ -12,7 +12,6 @@ export default class Header extends Component {
 		return (
 			<section className="Header__parent">
 				<section className="Header__content">
-					{/* Displays the mountain icon in the header */}
 					<div className="Header__company-info">
 						<MdFilterHdr id="Header__company-icon" />
 						<span>Social Mountain</span>
