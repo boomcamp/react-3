@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './Edit.css';
 
-//////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *POST* COMPONENT
+/////---THIS COMPONENT IS BEING RENDERED IN THE *POST* COMPONENT---/////
 
 export default class Edit extends Component {
   constructor(props) {
@@ -22,7 +22,6 @@ export default class Edit extends Component {
   updatePost() {
     const { text } = this.state;
     const { id, updatePostFn, hideEdit} = this.props;
-
 
   updatePostFn( id, text );
 
@@ -57,5 +56,5 @@ export default class Edit extends Component {
         </div>
       </section>
     );
+    }
   }
-}
