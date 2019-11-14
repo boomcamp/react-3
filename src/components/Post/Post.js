@@ -83,8 +83,8 @@ export default class Post extends Component {
             <MdPersonOutline />
           </div>
 
-          <span className="Post__name">DevMountain</span>
-          <span className="Post__handle">@DevMountain</span>
+          <span className="Post__name">Boom Camp</span>
+          <span className="Post__handle">@boom.camp</span>
 
           <span className="Post__date">- {date}</span>
         </div>
