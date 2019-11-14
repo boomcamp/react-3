@@ -9,6 +9,7 @@ import Search from './Search/Search';
 
 export default class Header extends Component {
   render() {
+    const { searchPostFn } = this.props
     return (
       <section className="Header__parent">
         <section className="Header__content">
@@ -20,7 +21,9 @@ export default class Header extends Component {
 
           {/* Displays the search bar */}
           <div className="Header__right">
-            <Search />
+            <Search 
+              searchPostFn={searchPostFn}
+            />
 
             {/* Displays the profile icon */}
             <div className="Header__profile">

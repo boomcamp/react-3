@@ -20,12 +20,15 @@ export default class Post extends Component {
     this.state = {
       editing: false,
       showMasterMenu: false,
+      showHeart: false,
+      nakaToggle: '',
     };
 
     this.hideEdit = this.hideEdit.bind(this);
     this.showEdit = this.showEdit.bind(this);
     this.toggleMasterMenu = this.toggleMasterMenu.bind(this);
     this.hideMasterMenu = this.hideMasterMenu.bind(this);
+    this.showHeart = this.showHeart.bind(this);
   }
 
   // This puts the post into EDIT mode when the EDIT button is clicked from the drop-down
@@ -51,12 +54,25 @@ export default class Post extends Component {
     }
   }
 
+  showHeart(){
+    if (this.state.showHeart === false) {
+      this.setState({ showHeart: true });
+      this.setState({ nakaToggle: 'heart'})
+    }else if(this.state.showHeart === true){
+      this.setState({ showHeart: false})
+      this.setState({ nakaToggle: ''})
+    }
+    
+  }
+
+  
   render() {
     // This is destructuring! You can also think of it as being written as so:
     // const editing = this.state.editing
     // const showMasterMenu = this.state.showMasterMenu
     const { editing, showMasterMenu } = this.state;
-
+    const { text, date, deletePostFn, updatePostFn, id } = this.props;
+    
     return (
       // Main body of post
       <section className="Post__parent" onClick={this.hideMasterMenu}>
@@ -70,7 +86,7 @@ export default class Post extends Component {
             style={{ display: showMasterMenu ? 'flex' : 'none' }}
           >
             <span onClick={this.showEdit}>Edit</span>
-            <span>Delete</span>
+            <span onClick={()=> deletePostFn(id)}>Delete</span>
           </div>
         </div>
 
@@ -83,7 +99,7 @@ export default class Post extends Component {
           <span className="Post__name">DevMountain</span>
           <span className="Post__handle">@DevMountain</span>
 
-          <span className="Post__date">- POST DATE GOES HERE</span>
+          <span className="Post__date">-{ date }</span>
         </div>
 
         {/* This is where the text goes. Notice the turnary statement. The turnary statement decides to display either the text OR the editor view
@@ -97,16 +113,16 @@ export default class Post extends Component {
         <div className="Post__content">
           {// This has been pulled off of this.state via destructuring
           editing ? (
-            <Edit text="" hideEdit={this.hideEdit} />
+            <Edit text={text} date={date} hideEdit={this.hideEdit} updatePostFn = {updatePostFn} id = {id}/>
           ) : (
-            <span className="Post__text">POST TEXT GOES HERE</span>
+            <span className="Post__text">{ text }</span>
           )}
         </div>
 
         {/* These are all of the cute little icons in the bottom left corner */}
         <div className="Post__user-controls">
           <MdChatBubbleOutline className="Post__control-icon" />
-          <MdFavoriteBorder className="Post__control-icon" />
+          <MdFavoriteBorder className="Post__control-icon" id={this.state.nakaToggle} onClick={this.showHeart}/>
           <MdMailOutline className="Post__control-icon" />
         </div>
       </section>
