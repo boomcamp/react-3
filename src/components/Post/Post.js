@@ -81,10 +81,9 @@ export default class Post extends Component {
             <MdPersonOutline />
           </div>
 
-          <span className="Post__name">DevMountain</span>
-          <span className="Post__handle">@DevMountain</span>
-
-          <span className="Post__date">-{date}</span>
+          <span className="Post__name">Boom.Camp</span>
+          <span className="Post__handle">@boom.camp</span>
+          <span className="Post__date">-{date}</span> 
         </div>
 
         {/* This is where the text goes. Notice the turnary statement. The turnary statement decides to display either the text OR the editor view

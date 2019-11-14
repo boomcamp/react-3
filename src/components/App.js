@@ -31,8 +31,8 @@ class App extends Component {
   }
   updatePost(id, text) {
     axios
-   .put(`http://localhost:9090/posts/${id}`, { text }).
-    then(response => {
+   .put(`http://localhost:9090/posts/${id}`, { text })
+    .then(response => {
       const updatePost = response.data;
       const updatePosts = this.state.posts.reverse().map(post => {
         if (post.id === updatePost.id) {
@@ -46,16 +46,25 @@ class App extends Component {
   }
 
   deletePost(id) {
-    axios
-    .delete(`http://localhost:9090/posts/${id}`)
-    .then(se =>{
-       return axios
+    var del = window.confirm("CONFIRM TO DELETE ")
+    if (del === true) {
+      axios
+      .delete(`http://localhost:9090/posts/${id}`)
+      .then(se =>{
+         return axios
+          .get('http://localhost:9090/posts')
+          .then(response => {
+            this.setState({ posts: response.data })
+          });
+         }
+      )  
+      } else {
+        axios
         .get('http://localhost:9090/posts')
         .then(response => {
           this.setState({ posts: response.data })
         });
-       }
-    )
+      }
   }
   createPost(text) {
     const date = new Date().toLocaleString('en-US', {
@@ -83,7 +92,7 @@ handleSearch(el){
 this.setState({ posts: el})
 }
   render() {
-   // const { posts } = this.state;
+    //const { posts } = this.state;
    // console.log(this.state.posts)
     return (
       <div className="App__parent">
