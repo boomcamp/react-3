@@ -18,6 +18,7 @@ class App extends Component {
     this.updatePost = this.updatePost.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.searchPost = this.searchPost.bind(this);
   }
 
   componentDidMount() {
@@ -33,8 +34,9 @@ class App extends Component {
   }
 
   updatePost(id, text) {
-    axios.put(`http://localhost:9090/posts/${id}`, { text }).
-      then(res => {
+    axios
+      .put(`http://localhost:9090/posts/${id}`, { text })
+      .then(res => {
       const temp = this.state.posts.map(post => {
         if (post.id === res.data.id) {
           return {post, ...res.data };
@@ -70,12 +72,22 @@ class App extends Component {
       })
   }
 
+  searchPost(text){
+    axios
+    .get(`http://localhost:9090/posts?q=${text}`)
+    .then(res => {
+      this.setState({
+        posts: [...res.data]
+      })
+    })
+  }
+
   render() {
     const { posts } = this.state;
 
     return (
       <div className="App__parent">
-        <Header />
+        <Header searchPostFn={this.searchPost}/>
 
         <section className="App__content">
           <Compose createPostFn={this.createPost}/>
