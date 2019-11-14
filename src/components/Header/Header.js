@@ -16,7 +16,6 @@ export default class Header extends Component {
     // console.log(e)
     this.props.searchMain(e)
   }
-
   render() {
     return (
       <section className="Header__parent">

@@ -20,7 +20,7 @@ export default class Search extends Component {
    this.setState({
      searchVal:e
    })
-   axios
+   axios  
    .get('http://localhost:9090/posts')
    .then(res =>{
     var searchItem = res.data.filter(item =>{
@@ -28,7 +28,7 @@ export default class Search extends Component {
        item.text.toLowerCase().match(e.toLowerCase())
        )
      })
-    //  console.log(searchItem)
+    //  console.log(searchItem)<input placeholder="Search Your Feed" onChange ={(e)=> this.handleChange(e.target.value)}/>
     this.props.search(searchItem)
    })
  }
@@ -38,7 +38,7 @@ export default class Search extends Component {
     return (
       <section className="Search__parent">
         <div className="Search__content">
-          <input placeholder="Search Your Feed" onChange ={(e)=> this.handleChange(e.target.value)}/>
+          <input placeholder="Search Your Feed" onChange ={e=> this.handleChange(e.target.value)}/>
 
           <MdSearch id="Search__icon" />
         </div>

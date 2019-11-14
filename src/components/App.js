@@ -7,6 +7,7 @@ import Compose from './Compose/Compose';
 import axios from 'axios';
 import Post from './Post/Post'
 axios.defaults.headers.common['Content-Type'] = 'application/json';
+
 class App extends Component {
   constructor() {
     super();
@@ -33,7 +34,7 @@ class App extends Component {
    .put(`http://localhost:9090/posts/${id}`, { text }).
     then(response => {
       const updatePost = response.data;
-      const updatePosts = this.state.posts.map(post => {
+      const updatePosts = this.state.posts.reverse().map(post => {
         if (post.id === updatePost.id) {
           return { post, ...updatePost };
         } else {
@@ -54,29 +55,35 @@ class App extends Component {
           this.setState({ posts: response.data })
         });
        }
-
     )
-
   }
-
-
   createPost(text) {
+    const date = new Date().toLocaleString('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  if(text === ''){
+    alert('No Input Data')
+  }
+else{
     axios
-      .post('http://localhost:9090/posts', { text })
+      .post('http://localhost:9090/posts', { text,date})
       .then(results => {
         return axios
         .get('http://localhost:9090/posts')
         .then(response => {
+          console.log(response)
           this.setState({ posts: response.data })
         });
       });
+    }
   }
 handleSearch(el){
 this.setState({ posts: el})
 }
-
   render() {
-    const { posts } = this.state;
+   // const { posts } = this.state;
    // console.log(this.state.posts)
     return (
       <div className="App__parent">
@@ -86,7 +93,7 @@ this.setState({ posts: el})
             <Compose createPostFn={this.createPost}/>
           {
           
-          this.state.posts.map(post => <Post key={post.id} text={post.text} date={post.date} id = {post.id} updatePostFn = {this.updatePost}   deletePostFn={this.deletePost}/>)
+          this.state.posts.reverse().map(post => <Post key={post.id} text={post.text} date={post.date} id = {post.id} updatePostFn = {this.updatePost}   deletePostFn={this.deletePost}/>)
           }
         </section>
       </div>
