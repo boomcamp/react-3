@@ -8,6 +8,14 @@ import Search from './Search/Search';
 //////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *APP* COMPONENT
 
 export default class Header extends Component {
+  constructor(){
+    super();
+    this.searchItem = this.searchItem.bind(this);
+  }
+  searchItem(e){
+    // console.log(e)
+    this.props.searchMain(e)
+  }
   render() {
     return (
       <section className="Header__parent">
@@ -20,7 +28,7 @@ export default class Header extends Component {
 
           {/* Displays the search bar */}
           <div className="Header__right">
-            <Search />
+            <Search search={this.searchItem}/>
 
             {/* Displays the profile icon */}
             <div className="Header__profile">

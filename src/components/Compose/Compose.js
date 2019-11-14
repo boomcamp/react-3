@@ -14,14 +14,21 @@ export default class Compose extends Component {
     };
 
     this.createPost = this.createPost.bind(this);
+   // this.createPostFn = this.createPostFn.bind(this);
   }
 
   updateText(text) {
     this.setState({ text });
   }
 
-  createPost() {}
-
+  createPost() {
+    const { text } = this.state;
+    const { createPostFn } = this.props;
+  
+    createPostFn( text );
+    this.setState({ text: '' });
+  }
+  
   render() {
     // Destructuring
     const { text } = this.state;
