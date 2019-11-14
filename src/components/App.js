@@ -66,17 +66,21 @@ class App extends Component {
   }
 
   findPost(text) {
-    if (text) {
-      axios
-        .get(
-          `https://practiceapi.devmountain.com/api/posts/filter?text=${text}`
-        )
-        .then(response => {
+    axios
+      .get("https://practiceapi.devmountain.com/api/posts")
+      .then(response => {
+        if (text) {
+          this.setState({
+            posts: response.data.filter(name =>
+              name.text.toLowerCase().includes(text.toLowerCase())
+            )
+          });
+        } else {
           this.setState({
             posts: response.data
           });
-        });
-    }
+        }
+      });
   }
 
   render() {
