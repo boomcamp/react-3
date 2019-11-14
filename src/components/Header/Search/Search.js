@@ -11,8 +11,8 @@ export default class Search extends Component {
     return (
       <section className="Search__parent">
         <div className="Search__content">
-          <input placeholder="Search Your Feed" />
-
+          <input onChange={e => this.props.searchPost(e.target.value)} placeholder="Search Your Feed" />
+​
           <MdSearch id="Search__icon" />
         </div>
       </section>
