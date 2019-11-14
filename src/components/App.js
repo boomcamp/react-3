@@ -20,6 +20,7 @@ class App extends Component {
     this.updatePost = this.updatePost.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.search = this.search.bind(this);
   }
 
   componentDidMount() {
@@ -58,12 +59,20 @@ class App extends Component {
     });
   }
 
+  search(text) {
+    axios
+      .get(`http://localhost:9090/posts?q=${encodeURI(text)}`)
+      .then(response => {
+        this.setState({ posts: response.data });
+      });
+  }
+
   render() {
     const { posts } = this.state;
 
     return (
       <div className="App__parent">
-        <Header />
+        <Header search={this.search} />
 
         <section className="App__content">
           <Compose createPostFn={this.createPost} />
