@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": 0,
+      "text": "Dolores sit temporibus ipsam dolores ducimus corrupti cumque quidem ipsam.",
+      "date": "Feb 27, 2019"
+    },
+    {
+      "id": 1,
+      "text": "Voluptate autem rerum omnis in atque.",
+      "date": "Nov 16, 2018"
+    },
+    {
+      "id": 2,
+      "text": "Voluptas expedita assumenda.",
+      "date": "Mar 19, 2019"
+    },
+    {
+      "id": 3,
+      "text": "Omnis quis omnis.",
+      "date": "Aug 12, 2019"
+    },
+    {
+      "id": 4,
+      "text": "Doloribus vel eveniet animi suscipit.",
+      "date": "Oct 30, 2019"
+    },
+    {
+      "id": 5,
+      "text": "Modi quaerat harum quae sint voluptatem quia eos repellat expedita.",
+      "date": "Mar 17, 2019"
+    },
+    {
+      "id": 6,
+      "text": "Eius sint consequatur voluptatem sapiente nulla.",
+      "date": "May 13, 2019"
+    },
+    {
+      "id": 7,
+      "text": "Rerum et voluptates voluptates quam necessitatibus nesciunt vel autem fugiat.",
+      "date": "Jul 19, 2019"
+    },
+    {
+      "id": 8,
+      "text": "Est doloremque rerum in.",
+      "date": "Jul 21, 2019"
+    },
+    {
+      "id": 9,
+      "text": "Aut optio dolores enim repellendus sed.",
+      "date": "Nov 3, 2019"
+    }
+  ]
+}
