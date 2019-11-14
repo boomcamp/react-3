@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './Edit.css';
 
-//////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *POST* COMPONENT
+/////---THIS COMPONENT IS BEING RENDERED IN THE *POST* COMPONENT---/////
 
 export default class Edit extends Component {
   constructor(props) {
@@ -19,9 +19,17 @@ export default class Edit extends Component {
     this.setState({ text: value });
   }
 
-  updatePost() {}
+  updatePost() {
+    const { text } = this.state;
+    const { id, updatePostFn, hideEdit} = this.props;
+
+  updatePostFn( id, text );
+
+  hideEdit();
+  }
 
   render() {
+
     // More destructuring!
     const { hideEdit } = this.props;
     const { text } = this.state;
@@ -37,24 +45,16 @@ export default class Edit extends Component {
 
         <div className="Edit__controls">
           {/* This saves your changes made */}
-          <button
-            id="Edit__controls-update"
-            className="Edit__control-btn"
-            onClick={this.updatePost}
-          >
+          <button id="Edit__controls-update" className="Edit__control-btn" onClick = {this.updatePost}>
             Update
           </button>
 
           {/* This cancels the edit mode and does not save changes. Remember the "hideEdit" method was passed down through props */}
-          <button
-            id="Edit__controsl-cancel"
-            className="Edit__control-btn"
-            onClick={hideEdit}
-          >
+          <button id="Edit__controsl-cancel" className="Edit__control-btn" onClick = {hideEdit}>
             Cancel
           </button>
         </div>
       </section>
     );
+    }
   }
-}
